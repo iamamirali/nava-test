@@ -1,1 +1,39 @@
 @import 'tailwindcss';
+
+:root {
+  --color-primary: #b02024;
+  --color-primary-40: #fff8f8;
+  --color-primary-45: #fcf6f6;
+  --color-primary-50: #f7e9e9;
+  --color-primary-60: #f1e1e1;
+  --color-primary-70: #ecd8d8;
+  --color-primary-80: #f8dadb;
+  --color-primary-100: #e7babb;
+  --color-primary-200: #db989a;
+  --color-primary-300: #ca6a6c;
+  --color-primary-400: #c04d50;
+  --color-primary-500: #b02024;
+  --color-primary-600: #a01d21;
+  --color-primary-700: #7d171a;
+  --color-primary-800: #611214;
+  --color-primary-900: #4a0d0f;
+}
+
+@theme {
+  --color-primary-40: var(--color-primary-40);
+  --color-primary-45: var(--color-primary-45);
+  --color-primary-50: var(--color-primary-50);
+  --color-primary-60: var(--color-primary-60);
+  --color-primary-80: var(--color-primary-80);
+  --color-primary-70: var(--color-primary-70);
+  --color-primary-100: var(--color-primary-100);
+  --color-primary-200: var(--color-primary-200);
+  --color-primary-300: var(--color-primary-300);
+  --color-primary-400: var(--color-primary-400);
+  --color-primary-500: var(--color-primary-500);
+  --color-primary-600: var(--color-primary-600);
+  --color-primary-700: var(--color-primary-700);
+  --color-primary-800: var(--color-primary-800);
+  --color-primary-900: var(--color-primary-900);
+  --color-primary: var(--color-primary);
+}
