@@ -1,0 +1,16 @@
+services:
+
+  nextjs:
+
+    container_name: my-next-app
+
+    build:
+      context: .
+
+    restart: unless-stopped
+
+    ports:
+      - "3030:3000"
+
+    environment:
+      NODE_ENV: production
