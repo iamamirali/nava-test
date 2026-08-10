@@ -6,11 +6,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { startTransition, useActionState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import z from 'zod';
-import { usersLogin } from '../actions/Users';
+import { usersLogin } from '../../actions/Users';
 import { useSearchParams } from 'next/navigation';
-import { UsersLoginResponse } from '../actions/types';
+import { UsersLoginResponse } from '../../actions/types';
 
-const initialState: MutationState<UsersLoginResponse> = {
+const initialState: any = {
   success: false,
   message: '',
   value: null,

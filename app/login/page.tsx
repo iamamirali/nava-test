@@ -6,7 +6,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RhfTextInput } from '@/components/ui/RHF/RhfTextInput';
 import { MutationState } from '@/lib/api';
-import { usersSendCode } from '../actions/Users';
+import { usersSendCode } from '../../actions/Users';
 
 const initialState: MutationState = {
   success: false,
