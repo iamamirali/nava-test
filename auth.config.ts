@@ -11,7 +11,7 @@ export const authConfig = {
 
       //   const isProtectedRoute = request.nextUrl.pathname.startsWith('/dashboard');
       const isProtectedRoute =
-        request.nextUrl.pathname === '/' || request.nextUrl.pathname === '/test';
+        request.nextUrl.pathname === '/' || request.nextUrl.pathname === '/pwa';
 
       if (isProtectedRoute) {
         return isLoggedIn;

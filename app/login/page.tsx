@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { RhfTextInput } from '@/components/ui/RHF/RhfTextInput';
 import { MutationState } from '@/lib/api';
 import { usersSendCode } from '../../actions/Users';
+import { useSearchParams } from 'next/navigation';
 
 const initialState: MutationState = {
   success: false,
@@ -21,6 +22,8 @@ const schema = z.object({
 type FormType = z.infer<typeof schema>;
 
 export default function Login() {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
   const [state, formAction, pending] = useActionState(usersSendCode, initialState);
 
   const methods = useForm<FormType>({
@@ -32,6 +35,7 @@ export default function Login() {
     const formData = new FormData();
 
     formData.append('mobile', String(values.mobile));
+    formData.append('callbackUrl', callbackUrl);
 
     startTransition(() => {
       formAction(formData);

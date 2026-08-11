@@ -1,14 +1,12 @@
 'use client';
 
 import { OTPInput } from '@/components/ui/RHF/RhfOtpInput';
-import { MutationState } from '@/lib/api';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { startTransition, useActionState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import z from 'zod';
 import { usersLogin } from '../../actions/Users';
 import { useSearchParams } from 'next/navigation';
-import { UsersLoginResponse } from '../../actions/types';
 
 const initialState: any = {
   success: false,
@@ -25,6 +23,7 @@ type FormType = z.infer<typeof schema>;
 export default function Otp() {
   const searchParams = useSearchParams();
   const mobile = searchParams.get('mobile');
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
 
   const [state, formAction, pending] = useActionState(usersLogin, initialState);
 
@@ -36,6 +35,7 @@ export default function Otp() {
 
     formData.append('mobile', String(mobile));
     formData.append('code', String(values.code));
+    formData.append('callbackUrl', callbackUrl);
 
     startTransition(() => {
       formAction(formData);
