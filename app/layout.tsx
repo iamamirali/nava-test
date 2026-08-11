@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import './globals.css';
 
 const customFont = localFont({
-  src: "../fonts/IRANSansXV.woff2",
+  src: '../fonts/IRANSansXV.woff2',
 });
 
 export const metadata: Metadata = {
-  title: "تست ناوا",
+  title: 'تست ناوا',
 };
 
 export default function RootLayout({

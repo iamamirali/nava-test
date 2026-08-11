@@ -6,12 +6,11 @@ export default function Home() {
           سلام دنیا
         </h1>
         <p className="bg-pink-50/50 text-pink-800 p-6 rounded-2xl leading-loose text-justify w-full font-medium border border-pink-50">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-          quisquam illo dolorum earum praesentium sint iste dicta? Expedita
-          quaerat modi praesentium, nihil dolore magni nostrum accusantium eos
-          iure, velit fugiat est, facilis suscipit labore impedit quia amet odio
-          quisquam iusto aliquid debitis nesciunt fuga nisi eum. Consequatur
-          molestiae quidem quibusdam!
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam quisquam illo dolorum
+          earum praesentium sint iste dicta? Expedita quaerat modi praesentium, nihil dolore magni
+          nostrum accusantium eos iure, velit fugiat est, facilis suscipit labore impedit quia amet
+          odio quisquam iusto aliquid debitis nesciunt fuga nisi eum. Consequatur molestiae quidem
+          quibusdam!
         </p>
       </div>
     </main>

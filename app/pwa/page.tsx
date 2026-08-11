@@ -1,4 +1,4 @@
-import PushManager from "../PushManager";
+import PushManager from '../PushManager';
 
 export default function PwaPage() {
   return (
