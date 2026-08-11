@@ -2,13 +2,13 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "فروشگاه نون و نمک",
-    short_name: "نون و نمک",
-    description: "فروشگاه محصولات سالم، سنتی و دست‌ساز",
+    name: "سامانه حمل و نقل ناوا",
+    short_name: "ناوا",
+    description: "سامانه هوشمند و ایمن مدیریت بار و پرداخت حقوق رانندگان",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
-    theme_color: "#d32f2f",
+    theme_color: "#FF69B4",
     icons: [
       {
         src: "/icon-192x192.png",

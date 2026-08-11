@@ -1,6 +1,3 @@
-import PushManager from "./PushManager";
-import InstallPrompt from "./InstallPrompt";
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-pink-50 flex flex-col items-center justify-center p-6">
@@ -16,11 +13,6 @@ export default function Home() {
           quisquam iusto aliquid debitis nesciunt fuga nisi eum. Consequatur
           molestiae quidem quibusdam!
         </p>
-
-        <div className="flex flex-col md:flex-row w-full gap-4">
-          <PushManager />
-          <InstallPrompt />
-        </div>
       </div>
     </main>
   );
