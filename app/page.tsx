@@ -2,15 +2,12 @@ import { logout } from '@/actions/Users';
 
 export default function Home() {
   return (
-    <main className="grow flex flex-col items-center justify-center">
-      <h1 className="bg-primary-50 text-primary text-center text-4xl font-bold p-4">سلام دنیا</h1>
-      <p className="grow bg-primary-100 p-4">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam quisquam illo dolorum
-        earum praesentium sint iste dicta? Expedita quaerat modi praesentium, nihil dolore magni
-        nostrum accusantium eos iure, velit fugiat est, facilis suscipit labore impedit quia amet
-        odio quisquam iusto aliquid debitis nesciunt fuga nisi eum. Consequatur molestiae quidem
-        quibusdam!
-      </p>
+    <main className="min-h-screen bg-pink-50 flex flex-col items-center justify-center p-6">
+      <div className="w-full max-w-3xl bg-white flex flex-col items-center p-8 rounded-3xl shadow-xl shadow-pink-100 border border-pink-100 gap-8">
+        <h1 className="bg-pink-100 text-pink-500 text-center text-4xl font-extrabold px-10 py-4 rounded-full w-full tracking-wide">
+          سلام دنیا
+        </h1>
+      </div>
 
       <form action={logout}>
         <button type="submit">Logout</button>
