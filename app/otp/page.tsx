@@ -7,7 +7,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import z from 'zod';
 import { useSearchParams } from 'next/navigation';
 import { MutationState } from '@/lib/api';
-import { loginUser } from '@/lib/auth';
+import { loginUser } from '@/actions/Auth';
 
 const initialState: MutationState = {
   success: false,

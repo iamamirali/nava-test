@@ -1,8 +1,7 @@
-import NextAuth, { AuthError } from 'next-auth';
+import NextAuth from 'next-auth';
 import { CredentialsSignin } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { authConfig } from '@/auth.config';
-import { MutationState } from './api';
 import { usersLogin } from '@/actions/Users';
 
 export class CredentialsSigninError extends CredentialsSignin {
@@ -10,38 +9,6 @@ export class CredentialsSigninError extends CredentialsSignin {
     super();
     this.code = message;
   }
-}
-
-export async function loginUser(_prevState: MutationState, formData: FormData) {
-  const callbackUrl = formData.get('callbackUrl')?.toString() ?? '/';
-  try {
-    await signIn('credentials', {
-      mobile: formData.get('mobile'),
-      code: formData.get('code'),
-      redirectTo: callbackUrl,
-    });
-    return {
-      success: true,
-      message: 'ورود با موفقیت انجام شد',
-      value: null,
-    };
-  } catch (error) {
-    if (error instanceof AuthError && error instanceof CredentialsSignin) {
-      return {
-        success: false,
-        message: error.code,
-        value: null,
-      };
-    }
-
-    throw error;
-  }
-}
-
-export async function logoutUser() {
-  await signOut({
-    redirectTo: '/login',
-  });
 }
 
 export const { auth, signIn, signOut, handlers } = NextAuth({

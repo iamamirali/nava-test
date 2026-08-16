@@ -1,4 +1,4 @@
-import { logoutUser } from '@/lib/auth';
+import { logoutUser } from '@/actions/Auth';
 
 export default function Home() {
   return (
