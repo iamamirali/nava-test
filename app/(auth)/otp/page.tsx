@@ -103,14 +103,16 @@ export default function Otp() {
             </form>
           </FormProvider>
 
-          <Link href="/login">
-            <button
-              type="button"
-              className="font-medium text-primary transition-opacity hover:opacity-80 cursor-pointer"
-            >
-              تغییر شماره موبایل
-            </button>
-          </Link>
+          <div className="w-fit mx-auto mt-6 text-sm">
+            <Link href="/login">
+              <button
+                type="button"
+                className="font-medium text-primary transition-opacity hover:opacity-80 cursor-pointer"
+              >
+                تغییر شماره موبایل
+              </button>
+            </Link>
+          </div>
 
           <p className="mt-6 text-center text-xs leading-5 text-gray-400">
             کد تایید را با کسی به اشتراک نگذارید.

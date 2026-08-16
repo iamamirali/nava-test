@@ -7,8 +7,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useSearchParams } from 'next/navigation';
 import { RhfTextInput } from '@/components/ui/RHF/RhfTextInput';
 import { MutationState } from '@/lib/api';
-import { usersSendCode } from '../../actions/Users';
 import Image from 'next/image';
+import { usersSendCode } from '@/actions/Users';
 
 const initialState: MutationState = { success: false, message: '', value: null };
 
