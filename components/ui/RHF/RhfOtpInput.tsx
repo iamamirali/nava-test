@@ -2,6 +2,7 @@
 
 import { type ChangeEvent, type ClipboardEvent, type KeyboardEvent, useRef } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
+import clsx from 'clsx';
 
 type OTPInputProps = {
   name: string;
@@ -12,14 +13,17 @@ type OTPInputProps = {
 export function OTPInput({ name, length = 6, disabled = false }: OTPInputProps) {
   const { control } = useFormContext();
 
-  const { field, fieldState } = useController({
+  const {
+    field,
+    fieldState: { error },
+  } = useController({
     name,
     control,
   });
 
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  const value = field.value ?? '';
+  const value = String(field.value ?? '');
 
   const handleChange = (index: number, event: ChangeEvent<HTMLInputElement>) => {
     const digit = event.target.value.replace(/\D/g, '').slice(-1);
@@ -37,8 +41,34 @@ export function OTPInput({ name, length = 6, disabled = false }: OTPInputProps) 
   };
 
   const handleKeyDown = (index: number, event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Backspace' && !value[index] && index > 0) {
+    if (event.key === 'Backspace') {
+      event.preventDefault();
+
+      if (value[index]) {
+        const chars = value.split('');
+        chars[index] = '';
+
+        field.onChange(chars.join(''));
+        return;
+      }
+
+      if (index > 0) {
+        const chars = value.split('');
+        chars[index - 1] = '';
+
+        field.onChange(chars.join(''));
+        inputRefs.current[index - 1]?.focus();
+      }
+    }
+
+    if (event.key === 'ArrowLeft' && index > 0) {
+      event.preventDefault();
       inputRefs.current[index - 1]?.focus();
+    }
+
+    if (event.key === 'ArrowRight' && index < length - 1) {
+      event.preventDefault();
+      inputRefs.current[index + 1]?.focus();
     }
   };
 
@@ -55,8 +85,8 @@ export function OTPInput({ name, length = 6, disabled = false }: OTPInputProps) 
   };
 
   return (
-    <div>
-      <div className="flex gap-2" dir="ltr">
+    <div className="w-full">
+      <div className="flex justify-center gap-2 sm:gap-3" dir="ltr">
         {Array.from({ length }).map((_, index) => (
           <input
             key={index}
@@ -65,18 +95,41 @@ export function OTPInput({ name, length = 6, disabled = false }: OTPInputProps) 
             }}
             type="text"
             inputMode="numeric"
+            autoComplete={index === 0 ? 'one-time-code' : 'off'}
             maxLength={1}
             value={value[index] ?? ''}
             disabled={disabled}
+            aria-label={`رقم ${index + 1} کد تایید`}
             onChange={(event) => handleChange(index, event)}
             onKeyDown={(event) => handleKeyDown(index, event)}
             onPaste={handlePaste}
-            className="h-12 w-12 rounded-md border text-center text-xl"
+            className={clsx(
+              'h-12 w-9 sm:h-15 sm:w-12',
+              'rounded-2xl',
+              'border bg-brown-0',
+              'text-center text-xl font-semibold',
+              'text-brown-900',
+              'outline-none',
+              'transition-all',
+
+              'border-brown-40',
+              'hover:border-brown-60',
+
+              'focus:border-primary',
+              'focus:ring-4',
+              'focus:ring-primary/10',
+
+              'disabled:cursor-not-allowed',
+              'disabled:bg-brown-50',
+              'disabled:opacity-60',
+
+              error && 'border-red-500 focus:border-red-500 focus:ring-red-500/10',
+            )}
           />
         ))}
       </div>
 
-      {fieldState.error && <p className="mt-2 text-sm text-red-500">{fieldState.error.message}</p>}
+      {error?.message && <p className="mt-3 text-center text-sm text-red-600">{error.message}</p>}
     </div>
   );
 }

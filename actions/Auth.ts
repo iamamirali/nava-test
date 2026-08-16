@@ -34,4 +34,5 @@ export async function logoutUser() {
   await signOut({
     redirectTo: '/login',
   });
+  return { success: true, message: 'خروج از حساب انجام شد', value: null };
 }

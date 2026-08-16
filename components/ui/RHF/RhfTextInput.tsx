@@ -56,7 +56,7 @@ export function RhfTextInput<T extends FieldValues>({
           aria-invalid={!!error}
           aria-describedby={error ? `${inputId}-error` : undefined}
           className={clsx(
-            'w-full h-14.25 pt-0.5 border border-brown-40 transition-all peer placeholder:tracking-normal! placeholder:opacity-0 placeholder:text-brown-300',
+            'outline-none w-full h-12 pt-0.5 border border-brown-40 transition-all peer placeholder:tracking-normal! placeholder:opacity-0 placeholder:text-brown-300',
             'rounded-full hover:border-brown-60 focus:border-primary placeholder:transition focus:placeholder:opacity-100 bg-brown-0 disabled:cursor-not-allowed',
             'sm:text-base! text-sm',
             {

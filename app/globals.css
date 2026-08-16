@@ -1,39 +1,53 @@
 @import 'tailwindcss';
 
 :root {
-  --color-primary: #b02024;
-  --color-primary-40: #fff8f8;
-  --color-primary-45: #fcf6f6;
-  --color-primary-50: #f7e9e9;
-  --color-primary-60: #f1e1e1;
-  --color-primary-70: #ecd8d8;
-  --color-primary-80: #f8dadb;
-  --color-primary-100: #e7babb;
-  --color-primary-200: #db989a;
-  --color-primary-300: #ca6a6c;
-  --color-primary-400: #c04d50;
-  --color-primary-500: #b02024;
-  --color-primary-600: #a01d21;
-  --color-primary-700: #7d171a;
-  --color-primary-800: #611214;
-  --color-primary-900: #4a0d0f;
+  --color-primary: #f6339a;
+  --color-primary-50: #fdf2f8;
+  --color-primary-100: #fce7f3;
+  --color-primary-500: #f6339a;
+
+  --color-brown-0: #ffffff;
+  --color-brown-20: #f7f7f6;
+  --color-brown-30: #eeeeee;
+  --color-brown-40: #dededc;
+  --color-brown-50: #cbcaca;
+  --color-brown-60: #bfbebd;
+  --color-brown-70: #b4b3b2;
+  --color-brown-80: #a8a6a5;
+  --color-brown-90: #9c9a98;
+  --color-brown-100: #8f8d8b;
+  --color-brown-200: #83807f;
+  --color-brown-300: #767472;
+  --color-brown-400: #6c6967;
+  --color-brown-500: #605d5a;
+  --color-brown-600: #555250;
+  --color-brown-700: #474341;
+  --color-brown-800: #3a3734;
+  --color-brown-900: #302c29;
 }
 
 @theme {
-  --color-primary-40: var(--color-primary-40);
-  --color-primary-45: var(--color-primary-45);
   --color-primary-50: var(--color-primary-50);
-  --color-primary-60: var(--color-primary-60);
-  --color-primary-80: var(--color-primary-80);
-  --color-primary-70: var(--color-primary-70);
   --color-primary-100: var(--color-primary-100);
-  --color-primary-200: var(--color-primary-200);
-  --color-primary-300: var(--color-primary-300);
-  --color-primary-400: var(--color-primary-400);
   --color-primary-500: var(--color-primary-500);
-  --color-primary-600: var(--color-primary-600);
-  --color-primary-700: var(--color-primary-700);
-  --color-primary-800: var(--color-primary-800);
-  --color-primary-900: var(--color-primary-900);
   --color-primary: var(--color-primary);
+
+  --color-brown-0: var(--color-brown-0);
+  --color-brown-20: var(--color-brown-20);
+  --color-brown-30: var(--color-brown-30);
+  --color-brown-40: var(--color-brown-40);
+  --color-brown-50: var(--color-brown-50);
+  --color-brown-60: var(--color-brown-60);
+  --color-brown-70: var(--color-brown-70);
+  --color-brown-80: var(--color-brown-80);
+  --color-brown-90: var(--color-brown-90);
+  --color-brown-100: var(--color-brown-100);
+  --color-brown-200: var(--color-brown-200);
+  --color-brown-300: var(--color-brown-300);
+  --color-brown-400: var(--color-brown-400);
+  --color-brown-500: var(--color-brown-500);
+  --color-brown-600: var(--color-brown-600);
+  --color-brown-700: var(--color-brown-700);
+  --color-brown-800: var(--color-brown-800);
+  --color-brown-900: var(--color-brown-900);
 }
