@@ -2,9 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { MutationState, postApi } from '../lib/api';
-import { UsersLoginResponse } from './types';
-import { AuthError } from 'next-auth';
-import { signIn, signOut } from '@/lib/auth';
+import { UsersLoginDTO, UsersLoginResponse } from './types';
 
 const ENTITY = 'Users';
 
@@ -23,45 +21,9 @@ export async function usersSendCode(_prevState: MutationState, formData: FormDat
   return response;
 }
 
-// export async function usersLogin(
-//   _prevState: MutationState<UsersLoginResponse>,
-//   formData: FormData,
-// ) {
-//   const rawMobile = formData.get('mobile');
-//   const code = formData.get('code')?.toString() ?? '';
-//   const mobile = typeof rawMobile === 'string' ? rawMobile.trim() : '';
-//   return await postApi<{ mobile: string; code: string }, UsersLoginResponse>(
-//     `/${ENTITY}/Login`,
-//     { mobile, code },
-//     { message: 'ورود با موفقیت انجام شد' },
-//   );
-// }
-
-export async function usersLogin(_prevState: any, formData: FormData) {
-  const callbackUrl = formData.get('callbackUrl')?.toString() ?? '/';
-  try {
-    await signIn('credentials', {
-      mobile: formData.get('mobile'),
-      otp: formData.get('code'),
-      redirectTo: callbackUrl,
-    });
-  } catch (error) {
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case 'CredentialsSignin':
-          return { message: 'کد تایید اشتباه است.' };
-
-        default:
-          return 'خطایی رخ داد. لطفاً دوباره تلاش کنید.';
-      }
-    }
-
-    throw error;
-  }
-}
-
-export async function logout() {
-  await signOut({
-    redirectTo: '/login',
+export async function usersLogin(credentials: UsersLoginDTO) {
+  return postApi<UsersLoginDTO, UsersLoginResponse>(`/${ENTITY}/Login`, {
+    mobile: credentials.mobile,
+    code: credentials.code,
   });
 }

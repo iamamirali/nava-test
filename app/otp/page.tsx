@@ -5,17 +5,18 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { startTransition, useActionState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import z from 'zod';
-import { usersLogin } from '../../actions/Users';
 import { useSearchParams } from 'next/navigation';
+import { MutationState } from '@/lib/api';
+import { loginUser } from '@/lib/auth';
 
-const initialState: any = {
+const initialState: MutationState = {
   success: false,
   message: '',
   value: null,
 };
 
 const schema = z.object({
-  code: z.string('موبایل اجباریه'),
+  code: z.string('کد تایید را وارد کنید').min(1, 'کد تایید را وارد کنید'),
 });
 
 type FormType = z.infer<typeof schema>;
@@ -25,7 +26,7 @@ export default function Otp() {
   const mobile = searchParams.get('mobile');
   const callbackUrl = searchParams.get('callbackUrl') || '/';
 
-  const [state, formAction, pending] = useActionState(usersLogin, initialState);
+  const [state, formAction, pending] = useActionState(loginUser, initialState);
 
   const methods = useForm<FormType>({ resolver: zodResolver(schema) });
   const { handleSubmit } = methods;

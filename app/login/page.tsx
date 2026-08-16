@@ -16,7 +16,7 @@ const initialState: MutationState = {
 };
 
 const schema = z.object({
-  mobile: z.string('موبایل اجباریه'),
+  mobile: z.string('موبایل اجباریه').min(1, 'موبایل اجباریه'),
 });
 
 type FormType = z.infer<typeof schema>;
@@ -34,7 +34,7 @@ export default function Login() {
   const onSubmit = (values: FormType) => {
     const formData = new FormData();
 
-    formData.append('mobile', String(values.mobile));
+    formData.append('mobile', values.mobile);
     formData.append('callbackUrl', callbackUrl);
 
     startTransition(() => {

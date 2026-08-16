@@ -19,3 +19,8 @@ export interface UsersLoginResponse {
   accessToken: Token;
   refreshToken: Token;
 }
+
+export interface UsersLoginDTO {
+  mobile: string;
+  code: string;
+}

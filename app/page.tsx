@@ -1,4 +1,4 @@
-import { logout } from '@/actions/Users';
+import { logoutUser } from '@/lib/auth';
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         </h1>
       </div>
 
-      <form action={logout}>
+      <form action={logoutUser}>
         <button type="submit">Logout</button>
       </form>
     </main>

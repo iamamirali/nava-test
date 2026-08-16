@@ -1,25 +1,46 @@
-import NextAuth from 'next-auth';
+import NextAuth, { AuthError } from 'next-auth';
+import { CredentialsSignin } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-
 import { authConfig } from '@/auth.config';
-import { fetchApi } from './api';
-import { UsersLoginResponse } from '@/actions/types';
+import { MutationState } from './api';
+import { usersLogin } from '@/actions/Users';
 
-export interface LoginCredentials {
-  mobile: string;
-  otp: string;
+export class CredentialsSigninError extends CredentialsSignin {
+  constructor(message: string) {
+    super();
+    this.code = message;
+  }
 }
 
-export async function loginApi(credentials: LoginCredentials) {
-  return fetchApi<UsersLoginResponse>('/Users/Login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      mobile: credentials.mobile,
-      code: credentials.otp,
-    }),
+export async function loginUser(_prevState: MutationState, formData: FormData) {
+  const callbackUrl = formData.get('callbackUrl')?.toString() ?? '/';
+  try {
+    await signIn('credentials', {
+      mobile: formData.get('mobile'),
+      code: formData.get('code'),
+      redirectTo: callbackUrl,
+    });
+    return {
+      success: true,
+      message: 'ورود با موفقیت انجام شد',
+      value: null,
+    };
+  } catch (error) {
+    if (error instanceof AuthError && error instanceof CredentialsSignin) {
+      return {
+        success: false,
+        message: error.code,
+        value: null,
+      };
+    }
+
+    throw error;
+  }
+}
+
+export async function logoutUser() {
+  await signOut({
+    redirectTo: '/login',
   });
 }
 
@@ -30,25 +51,24 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
     Credentials({
       credentials: {
         mobile: {},
-        otp: {},
+        code: {},
       },
 
       async authorize(credentials) {
-        console.log(credentials);
         const mobile = String(credentials.mobile ?? '');
-        const otp = String(credentials.otp ?? '');
+        const code = String(credentials.code ?? '');
 
-        if (!mobile || !otp) {
+        if (!mobile || !code) {
           return null;
         }
 
-        const result = await loginApi({
+        const result = await usersLogin({
           mobile,
-          otp,
+          code,
         });
 
         if (!result.success || !result.value) {
-          return null;
+          throw new CredentialsSigninError(result.message);
         }
 
         const { user, accessToken, refreshToken } = result.value;
