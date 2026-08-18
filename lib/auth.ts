@@ -13,7 +13,6 @@ export class CredentialsSigninError extends CredentialsSignin {
 
 export const { auth, signIn, signOut, handlers } = NextAuth({
   ...authConfig,
-  trustHost: true,
   providers: [
     Credentials({
       credentials: {
